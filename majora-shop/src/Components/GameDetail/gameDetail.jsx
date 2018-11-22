@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ImageGallery from 'react-image-gallery';
+
 import "react-image-gallery/styles/css/image-gallery.css";
 
 const sample = {
@@ -29,13 +30,14 @@ class GameDetail extends Component {
     return (
       <div>
         <Paper className={classes.root} elevation={1}>
+          <Typography variant="h4" component="h3">
+            {title ? title : sample.title}
+          </Typography>
+          <br />
+          <br />
           <Grid container spacing={24}>
             <Grid item xs={12} sm={9}>
-              <Typography variant="h4" component="h3">
-                {title ? title : sample.title}
-              </Typography>
-              <br />
-              <br />
+
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <ImageGallery items={images ? images : sample.images} useTranslate3D={true} />
               </div>
@@ -59,11 +61,11 @@ class GameDetail extends Component {
 }
 
 
-const styles = theme => ({
+const styles = darkBaseTheme => ({
   root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    ...darkBaseTheme.mixins.gutters(),
+    paddingTop: darkBaseTheme.spacing.unit * 2,
+    paddingBottom: darkBaseTheme.spacing.unit * 2,
     flexGrow: 1,
   },
 });

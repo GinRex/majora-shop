@@ -53,6 +53,7 @@ class App extends Component {
         <CssBaseline />
         <AppBar
           position="fixed"
+          color="secondary"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: this.state.open,
           })}
