@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ImageGallery from 'react-image-gallery';
+import Comment from '../Comment/Comment';
 
 import "react-image-gallery/styles/css/image-gallery.css";
 
@@ -18,7 +19,12 @@ const sample = {
     { original: 'https://s.vndb.org/sf/64/1064.jpg', thumbnail: 'https://s.vndb.org/sf/64/1064.jpg' },
   ],
   price: '250000',
-
+  comments: [
+    { comment:{name: 'nanami', avatar:'https://myanimelist.cdn-dena.com/images/characters/14/310999.jpg'}, comment: 'this game is worth the price' },
+    { comment:{name: 'nanami', avatar:'../../Img/Users/nanami.jpg'}, comment: 'this game is worth the price' },
+    { comment:{name: 'nanami', avatar:'../../Img/Users/nanami.jpg'}, comment: 'this game is worth the price' },
+    { comment:{name: 'nanami', avatar:'../../Img/Users/nanami.jpg'}, comment: 'this game is worth the price' }
+  ]
 }
 
 class GameDetail extends Component {
@@ -46,6 +52,10 @@ class GameDetail extends Component {
               <Typography variant="h6" component="p">
                 {description ? description : sample.description}
               </Typography>
+              <Typography variant="h4" component="h3">Reviews</Typography><br /><br />
+              {Object.keys(sample.comments).map((key, value) => 
+                <Comment comment={sample.comments[key]}/>
+              )}
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="h4" component="h3">
