@@ -9,16 +9,16 @@ import ImageGallery from 'react-image-gallery';
 import Comment from '../Comment/Comment';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
-import DeleteIcon from '@material-ui/icons/Delete';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import KeyboardVoiceICon from '@material-ui/icons/KeyboardVoice';
 import Icon from '@material-ui/core/Icon';
-import SaveIcon from '@material-ui/icons/Save';
-import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import ReactDOM from 'react-dom';
+
 
 //data
 import data from '../../data.js';
@@ -48,8 +48,10 @@ const sample = {
 class GameDetail extends Component {
   state = {
     images: sample.images,
-    id: null
-
+    id: null,
+    age: '',
+    name: 'hai',
+    labelWidth: 0,
   }
 
   componentDidMount() {
@@ -57,13 +59,23 @@ class GameDetail extends Component {
     this.setState({ id: id });
     sample.images.unshift({ original: data[id].image, thumbnail: data[id].thumbnail })
     console.log(id)
+    this.setState({
+      labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
+    });
   }
+
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
+  };
+  
 
   render() {
     console.log(data);
     function handleDelete() {
       alert('You clicked the delete icon.'); // eslint-disable-line no-alert
     }
+
+
 
     function handleClick() {
       alert('You clicked the Chip.'); // eslint-disable-line no-alert
@@ -117,7 +129,44 @@ class GameDetail extends Component {
                   color="secondary"
                   // href="#chip"
                   clickable
-                /><br /><br />
+                />
+
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel
+                    ref={ref => {
+                      this.InputLabelRef = ref;
+                    }}
+                    htmlFor="outlined-age-native-simple"
+                  >
+                    Quantity
+          </InputLabel>
+                  <Select
+                    native
+                    value={this.state.age}
+                    onChange={this.handleChange('age')}
+                    input={
+                      <OutlinedInput
+                        name="Quantity"
+                        labelWidth={this.state.labelWidth}
+                        id="outlined-age-native-simple"
+                      />
+                    }
+                  >
+                    <option value="" />
+                    <option value={10}>10</option>
+                    <option value={20}>20</option>
+                    <option value={30}>30</option>
+                    <option value={40}>40</option>
+                    <option value={50}>50</option>
+                    <option value={60}>60</option>
+                    <option value={70}>70</option>
+                    <option value={80}>80</option>
+                    <option value={90}>90</option>
+                    {}
+                  </Select>
+                </FormControl>
+
+                <br /><br />
                 <Button variant="contained" color="secondary" className={classes.button}>
                   Add to cart
         <ShoppingCart className={classes.rightIcon} />
@@ -135,7 +184,7 @@ class GameDetail extends Component {
                       label={sample.tags[key]}
                       className={classes.chip}
                       component="a"
-                      color= {key % 2 == 0 ? "primary" : "secondary"}
+                      color={key % 2 == 0 ? "primary" : "secondary"}
                       // href="#chip"
                       clickable
                     />
@@ -188,6 +237,13 @@ const styles = darkBaseTheme => ({
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: darkBaseTheme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: darkBaseTheme.spacing.unit * 2,
   },
 });
 
