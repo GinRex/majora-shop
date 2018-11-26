@@ -169,10 +169,10 @@ class App extends Component {
               <ListItemIcon><ListIcon /></ListItemIcon>
               <ListItemText primary={'List Game'} />
             </ListItem>
-            <ListItem button key={'Update Game list'} onClick={() => this.props.history.push("/game-detail")}>
+            {/* <ListItem button key={'Update Game list'} onClick={() => this.props.history.push("/game-detail")}>
               <ListItemIcon><ControlIcon /></ListItemIcon>
               <ListItemText primary={'Update Game list'} />
-            </ListItem>
+            </ListItem> */}
           </List>
           <Divider />
         </Drawer>
@@ -181,7 +181,9 @@ class App extends Component {
           <div>
             <Route path="/home" component={Home} />
             <Route path="/list-game" component={ListGame} />
-            <Route path="/game-detail" component={GameDetail} />
+            {/* <Route path="/game-detail" component={GameDetail} /> */}
+
+            <Route path="/game-detail/:id" component={GameDetail} />
           </div>
         </main>
       </div>

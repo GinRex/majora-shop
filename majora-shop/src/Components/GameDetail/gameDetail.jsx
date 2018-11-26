@@ -18,6 +18,10 @@ import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
+
+//data
+import data from '../../data.js';
 
 import "react-image-gallery/styles/css/image-gallery.css";
 
@@ -43,10 +47,20 @@ const sample = {
 
 class GameDetail extends Component {
   state = {
-    images: sample.images
+    images: sample.images,
+    id: null
+
+  }
+
+  componentDidMount() {
+    const { id } = this.props.match.params
+    this.setState({ id: id });
+    sample.images.unshift({ original: data[id].image, thumbnail: data[id].thumbnail })
+    console.log(id)
   }
 
   render() {
+    console.log(data);
     function handleDelete() {
       alert('You clicked the delete icon.'); // eslint-disable-line no-alert
     }
@@ -54,12 +68,13 @@ class GameDetail extends Component {
     function handleClick() {
       alert('You clicked the Chip.'); // eslint-disable-line no-alert
     }
-    const { classes, title, images, description, price } = this.props;
+    const { classes } = this.props;
+    const { reference, producer, year_release, price, thumbnail, image, description, stock } = this.state.id ? data[this.state.id] : this.props;
     return (
       <div>
         <Paper className={classes.root} elevation={1}>
           <Typography variant="h4" component="h3">
-            {title ? title : sample.title}
+            {reference ? reference : sample.title}
           </Typography>
           <br />
           <br />
@@ -67,15 +82,15 @@ class GameDetail extends Component {
             <Grid item xs={12} sm={8}>
 
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <ImageGallery items={images ? images : sample.images} useTranslate3D={true} />
+                <ImageGallery items={image ? sample.images : sample.images} useTranslate3D={true} />
               </div>
               <br />
               <br />
               <Card className={classes.card}>
-              <Typography variant="h6" component="p">
-                {description ? description : sample.description}
-              </Typography>
-              <br />
+                <Typography variant="h6" component="p">
+                  {description ? description : sample.description}
+                </Typography>
+                <br />
               </Card>
               <Typography variant="h4" component="h3">Reviews</Typography><br /><br />
               {Object.keys(sample.comments).map((key, value) =>
@@ -85,34 +100,47 @@ class GameDetail extends Component {
             <Grid item xs={12} sm={4}>
               <Card className={classes.card}>
                 <Typography variant="h4" component="h3">
-                  {price ? price : sample.price}
+                  {price ? price : sample.price} $
                 </Typography>
+                <Chip
+                  label={producer}
+                  className={classes.chip}
+                  component="a"
+                  color="primary"
+                  href="#chip"
+                  clickable
+                />
+                <Chip
+                  label={year_release}
+                  className={classes.chip}
+                  component="a"
+                  color="secondary"
+                  href="#chip"
+                  clickable
+                /><br /><br />
                 <Button variant="contained" color="secondary" className={classes.button}>
-                  Delete
-        <DeleteIcon className={classes.rightIcon} />
+                  Add to cart
+        <ShoppingCart className={classes.rightIcon} />
+
                 </Button>
+                <br />
                 <Button variant="contained" color="primary" className={classes.button}>
-                  BUy
+                  Add to WhishList
         <Icon className={classes.rightIcon}>send</Icon>
                 </Button>
-                <Button variant="contained" color="default" className={classes.button}>
-                  Upload
-        <CloudUploadIcon className={classes.rightIcon} />
-                </Button>
-                <Button variant="contained" size="small" className={classes.button}>
-                  <SaveIcon className={classNames(classes.leftIcon, classes.iconSmall)} />
-                  Save
-      </Button>
-
+                <br /><br />
                 <div className={classes.chipContainer}>
-                  <Chip
-                    label="Visual Novel"
-                    className={classes.chip}
-                    component="a"
-                    color="primary"
-                    href="#chip"
-                    clickable
-                  />
+                  {Object.keys(sample.tags).map((key, value) => (
+                    <Chip
+                      label={sample.tags[key]}
+                      className={classes.chip}
+                      component="a"
+                      color= {key % 2 == 0 ? "primary" : "secondary"}
+                      href="#chip"
+                      clickable
+                    />
+                  ))}
+
                 </div>
               </Card>
             </Grid>
@@ -141,6 +169,7 @@ const styles = darkBaseTheme => ({
   },
   button: {
     margin: darkBaseTheme.spacing.unit,
+    width: "100%"
   },
   leftIcon: {
     marginRight: darkBaseTheme.spacing.unit,
@@ -153,6 +182,7 @@ const styles = darkBaseTheme => ({
   },
   chip: {
     margin: darkBaseTheme.spacing.unit,
+    fontSize: '1rem'
   },
   chipContainer: {
     display: 'flex',
