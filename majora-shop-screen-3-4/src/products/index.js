@@ -45,15 +45,14 @@ export const ProductFilter = props => (
         <QuickFilter label="resources.products.fields.stock_lte" source="stock_lte" defaultValue={10} />
     </Filter>
 );
-
 export const ProductList = (props) => (
     <List {...props} filters={<ProductFilter />} sort={{ field: 'stock', order: 'ASC' }} perPage={20}>
         <Datagrid bodyOptions={{ stripedRows: true, showRowHover: true }}>
             <NumberField label="No." source="id"/>
             <ThumbnailField/>
             <TextField label="Title" source="reference"/>
-            <TextField label="Producer" source="width"/>
-            <TextField label="Released Year" source="height"/>
+            <TextField label="Producer" source="producer"/>
+            <TextField label="Released Year" source="year_release"/>
             <NumberField source="price" options={{ style: 'currency', currency: 'USD' }} />
             <NumberField source="stock" label="Stock"/>
             <EditButton />
@@ -71,8 +70,8 @@ export const ProductCreate = (props) => (
             <FormTab label="resources.products.tabs.details">
                 <TextInput source="reference" validation={{ required: true }} />
                 <NumberInput source="price" validation={{ required: true }} elStyle={{ width: '5em' }} />
-                <TextInput source="width" validation={{ required: true }} />
-                <NumberInput source="height" validation={{ required: false }} elStyle={{ width: '7em' }} />
+                <TextInput source="producer" validation={{ required: true }} />
+                <NumberInput source="year_release" validation={{ required: false }} elStyle={{ width: '7em' }} />
                 <ReferenceInput source="category_id" reference="categories" allowEmpty>
                     <SelectInput source="name" />
                 </ReferenceInput>
@@ -99,8 +98,8 @@ export const ProductEdit = (props) => (
                 <DisabledInput source="id" elStyle={{ width: '5em' }}/>
                 <TextInput source="reference" />
                 <NumberInput source="price" elStyle={{ width: '5em' }} />
-                <TextInput source="width" />
-                <NumberInput source="height" elStyle={{ width: '7em' }} />
+                <TextInput source="producer" />
+                <NumberInput source="year_release" elStyle={{ width: '7em' }} />
                 <ReferenceInput source="category_id" reference="categories">
                     <SelectInput source="name" />
                 </ReferenceInput>

@@ -19,7 +19,7 @@ const GridList = ({ ids, isLoading, data, currentSort, basePath, rowStyle }) => 
                 <GridTile
                     key={id}
                     title={data[id].reference}
-                    subtitle={<div>{data[id].width} - {data[id].height} <div><NumberField source="price" record={data[id]} options={{ style: 'currency', currency: 'USD' }} /></div></div>}
+                    subtitle={<div>{data[id].producer} - {data[id].year_release} <div><NumberField source="price" record={data[id]} options={{ style: 'currency', currency: 'USD' }} /></div></div>}
                     actionIcon={<EditButton basePath={basePath} record={data[id]} label="" />}
                     titleBackground="linear-gradient(to top, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.4) 70%,rgba(0,0,0,0) 100%)"
                 >
