@@ -27,7 +27,7 @@ import CustomerReferenceField from '../visitors/CustomerReferenceField';
 import StarRatingField from '../reviews/StarRatingField';
 import GridList from './GridList';
 import Game from './Game';
-
+import LinkToProductPage from './LinkToProductPage';
 export const ProductIcon = Icon;
 
 const QuickFilter = translate(({ label, translate }) => <Chip>{translate(label)}</Chip>);
@@ -56,6 +56,7 @@ export const ProductList = (props) => (
             <NumberField source="price" options={{ style: 'currency', currency: 'USD' }} />
             <NumberField source="stock" label="Stock"/>
             <EditButton />
+            <LinkToProductPage />
         </Datagrid>
     </List>
 );
