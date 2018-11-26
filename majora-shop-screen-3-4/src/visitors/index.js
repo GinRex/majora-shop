@@ -51,7 +51,7 @@ ColoredNumberField.defaultProps = NumberField.defaultProps;
 export const VisitorList = (props) => (
     <List {...props} filters={<VisitorFilter />} sort={{ field: 'last_seen', order: 'DESC' }} perPage={25}>
         <Datagrid bodyOptions={{ stripedRows: true, showRowHover: true }}>
-            <FullNameField />
+            <FullNameField/>
             <DateField source="last_seen" type="date" />
             <NumberField source="nb_commands" label="resources.customers.fields.commands" style={{ color: 'purple' }} />
             <ColoredNumberField source="total_spent" options={{ style: 'currency', currency: 'USD' }} />
