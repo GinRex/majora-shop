@@ -107,7 +107,7 @@ class GameDetail extends Component {
                   className={classes.chip}
                   component="a"
                   color="primary"
-                  href="#chip"
+                  // href="#chip"
                   clickable
                 />
                 <Chip
@@ -115,7 +115,7 @@ class GameDetail extends Component {
                   className={classes.chip}
                   component="a"
                   color="secondary"
-                  href="#chip"
+                  // href="#chip"
                   clickable
                 /><br /><br />
                 <Button variant="contained" color="secondary" className={classes.button}>
@@ -136,7 +136,7 @@ class GameDetail extends Component {
                       className={classes.chip}
                       component="a"
                       color= {key % 2 == 0 ? "primary" : "secondary"}
-                      href="#chip"
+                      // href="#chip"
                       clickable
                     />
                   ))}
@@ -163,7 +163,7 @@ const styles = darkBaseTheme => ({
   card: {
     maxWidth: "100%",
     fontSize: '1rem',
-    margin: '10px',
+    // margin: '10px',
     backgroundColor: '#61bafb30',
     padding: '20px'
   },
