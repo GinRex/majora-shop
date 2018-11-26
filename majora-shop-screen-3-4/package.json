@@ -1,5 +1,5 @@
 {
-    "name": "admin-on-rest-demo",
+    "name": "Majora-Shop-Admin",
     "version": "1.2.0",
     "private": true,
     "devDependencies": {
@@ -39,5 +39,5 @@
         "eject": "react-scripts eject",
         "deploy": "gh-pages -d build"
     },
-    "homepage": "http://marmelab.com/admin-on-rest-demo/"
+    "homepage": ""
 }

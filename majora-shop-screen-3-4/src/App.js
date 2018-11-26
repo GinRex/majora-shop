@@ -35,7 +35,7 @@ class App extends Component {
     render() {
         return (
             <Admin
-                title="Posters Galore Admin"
+                title="Majora Shop Admin"
                 restClient={restClient}
                 customReducers={{ theme: themeReducer }}
                 customSagas={sagas}

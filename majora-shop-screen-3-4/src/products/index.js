@@ -16,15 +16,16 @@ import {
     TabbedForm,
     TextField,
     TextInput,
+    DisabledInput,
 } from 'admin-on-rest';
-import Icon from 'material-ui/svg-icons/image/collections';
+import Icon from 'material-ui/svg-icons/av/games';
 import Chip from 'material-ui/Chip';
 import RichTextInput from 'aor-rich-text-input';
 
 import CustomerReferenceField from '../visitors/CustomerReferenceField';
 import StarRatingField from '../reviews/StarRatingField';
 import GridList from './GridList';
-import Poster from './Poster';
+import Game from './Game';
 
 export const ProductIcon = Icon;
 
@@ -60,8 +61,8 @@ export const ProductCreate = (props) => (
             <FormTab label="resources.products.tabs.details">
                 <TextInput source="reference" validation={{ required: true }} />
                 <NumberInput source="price" validation={{ required: true }} elStyle={{ width: '5em' }} />
-                <NumberInput source="width" validation={{ required: true }} style={{ display: 'inline-block' }} elStyle={{ width: '5em' }} />
-                <NumberInput source="height" validation={{ required: true }} style={{ display: 'inline-block', marginLeft: 32 }} elStyle={{ width: '5em' }} />
+                <TextInput source="width" validation={{ required: true }} />
+                <NumberInput source="height" validation={{ required: false }} elStyle={{ width: '6em' }} />
                 <ReferenceInput source="category_id" reference="categories" allowEmpty>
                     <SelectInput source="name" />
                 </ReferenceInput>
@@ -74,20 +75,22 @@ export const ProductCreate = (props) => (
     </Create>
 );
 
-const ProductTitle = ({ record }) => <span>Poster #{record.reference}</span>;
+const ProductTitle = ({ record }) => <span>Game #{record.reference}</span>;
 export const ProductEdit = (props) => (
     <Edit {...props} title={<ProductTitle />}>
         <TabbedForm>
             <FormTab label="resources.products.tabs.image">
-                <Poster />
+                <Game />
                 <TextInput source="image" options={{ fullWidth: true }} />
                 <TextInput source="thumbnail" options={{ fullWidth: true }} />
             </FormTab>
             <FormTab label="resources.products.tabs.details">
+                
+                <DisabledInput source="id" elStyle={{ width: '5em' }}/>
                 <TextInput source="reference" />
                 <NumberInput source="price" elStyle={{ width: '5em' }} />
-                <NumberInput source="width" style={{ display: 'inline-block' }} elStyle={{ width: '5em' }} />
-                <NumberInput source="height" style={{ display: 'inline-block', marginLeft: 32 }} elStyle={{ width: '5em' }} />
+                <TextInput source="width" />
+                <NumberInput source="height" elStyle={{ width: '6em' }} />
                 <ReferenceInput source="category_id" reference="categories">
                     <SelectInput source="name" />
                 </ReferenceInput>

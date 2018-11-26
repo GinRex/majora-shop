@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import withWidth from 'material-ui/utils/withWidth';
 import { AppBarMobile, GET_LIST, GET_MANY } from 'admin-on-rest';
 
-import Welcome from './Welcome';
 import MonthlyRevenue from './MonthlyRevenue';
 import NbNewOrders from './NbNewOrders';
 import PendingOrders from './PendingOrders';
@@ -112,8 +111,8 @@ class Dashboard extends Component {
         const { width } = this.props;
         return (
             <div>
-                {width === 1 && <AppBarMobile title="Posters Galore Admin" />}
-                <Welcome style={styles.welcome} />
+                {width === 1 && <AppBarMobile title="Majora Shop Admin" />}
+                
                 <div style={styles.flex}>
                     <div style={styles.leftCol}>
                         <div style={styles.flex}>
