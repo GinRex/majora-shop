@@ -62,7 +62,7 @@ export const ProductCreate = (props) => (
                 <TextInput source="reference" validation={{ required: true }} />
                 <NumberInput source="price" validation={{ required: true }} elStyle={{ width: '5em' }} />
                 <TextInput source="width" validation={{ required: true }} />
-                <NumberInput source="height" validation={{ required: false }} elStyle={{ width: '6em' }} />
+                <NumberInput source="height" validation={{ required: false }} elStyle={{ width: '7em' }} />
                 <ReferenceInput source="category_id" reference="categories" allowEmpty>
                     <SelectInput source="name" />
                 </ReferenceInput>
@@ -90,7 +90,7 @@ export const ProductEdit = (props) => (
                 <TextInput source="reference" />
                 <NumberInput source="price" elStyle={{ width: '5em' }} />
                 <TextInput source="width" />
-                <NumberInput source="height" elStyle={{ width: '6em' }} />
+                <NumberInput source="height" elStyle={{ width: '7em' }} />
                 <ReferenceInput source="category_id" reference="categories">
                     <SelectInput source="name" />
                 </ReferenceInput>
