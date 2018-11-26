@@ -10,6 +10,7 @@ import {
     FormTab,
     List,
     NumberInput,
+    NumberField,
     ReferenceInput,
     ReferenceManyField,
     SelectInput,
@@ -21,7 +22,7 @@ import {
 import Icon from 'material-ui/svg-icons/av/games';
 import Chip from 'material-ui/Chip';
 import RichTextInput from 'aor-rich-text-input';
-
+import ThumbnailField from './ThumbnailField';
 import CustomerReferenceField from '../visitors/CustomerReferenceField';
 import StarRatingField from '../reviews/StarRatingField';
 import GridList from './GridList';
@@ -45,9 +46,18 @@ export const ProductFilter = props => (
     </Filter>
 );
 
-export const ProductList = props => (
-    <List {...props} filters={<ProductFilter />} perPage={20}>
-        <GridList />
+export const ProductList = (props) => (
+    <List {...props} filters={<ProductFilter />} sort={{ field: 'stock', order: 'ASC' }} perPage={20}>
+        <Datagrid bodyOptions={{ stripedRows: true, showRowHover: true }}>
+            <NumberField label="No." source="id"/>
+            <ThumbnailField/>
+            <TextField label="Title" source="reference"/>
+            <TextField label="Producer" source="width"/>
+            <TextField label="Released Year" source="height"/>
+            <NumberField source="price" options={{ style: 'currency', currency: 'USD' }} />
+            <NumberField source="stock" label="Stock"/>
+            <EditButton />
+        </Datagrid>
     </List>
 );
 
