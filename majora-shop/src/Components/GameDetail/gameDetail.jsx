@@ -104,6 +104,7 @@ class GameDetail extends Component {
                 </Typography>
                 <br />
               </Card>
+              <br/>
               <Typography variant="h4" component="h3">Reviews</Typography><br /><br />
               {Object.keys(sample.comments).map((key, value) =>
                 <Comment comment={sample.comments[key]} />
@@ -111,7 +112,7 @@ class GameDetail extends Component {
             </Grid>
             <Grid item xs={12} sm={4}>
               <Card className={classes.card}>
-                <Typography variant="h4" component="h3">
+                <Typography variant="h4" component="h3" style={{margin: 10}}>
                   {price ? price : sample.price} $
                 </Typography>
                 <Chip
@@ -164,9 +165,10 @@ class GameDetail extends Component {
                     <option value={90}>90</option>
                     {}
                   </Select>
-                </FormControl>
-
-                <br /><br />
+                  
+                </FormControl><br/>
+                <Typography variant="h5" component="h2" style={{margin: 10}}>{stock} left in stock</Typography>
+                <br />
                 <Button variant="contained" color="secondary" className={classes.button}>
                   Add to cart
         <ShoppingCart className={classes.rightIcon} />
@@ -178,6 +180,7 @@ class GameDetail extends Component {
         <Icon className={classes.rightIcon}>send</Icon>
                 </Button>
                 <br /><br />
+                <Card className={classes.chipCard} >
                 <div className={classes.chipContainer}>
                   {Object.keys(sample.tags).map((key, value) => (
                     <Chip
@@ -191,6 +194,7 @@ class GameDetail extends Component {
                   ))}
 
                 </div>
+                </Card>
               </Card>
             </Grid>
 
@@ -216,6 +220,13 @@ const styles = darkBaseTheme => ({
     backgroundColor: '#61bafb30',
     padding: '20px'
   },
+  chipCard: {
+    maxWidth: "100%",
+    fontSize: '1rem',
+    // margin: '10px',
+    backgroundColor: '#0b0b0bc7',
+    // padding: '20px'
+  },
   button: {
     margin: darkBaseTheme.spacing.unit,
     width: "100%"
@@ -240,7 +251,10 @@ const styles = darkBaseTheme => ({
   },
   formControl: {
     margin: darkBaseTheme.spacing.unit,
-    minWidth: 120,
+    minWidth: "100%",
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   selectEmpty: {
     marginTop: darkBaseTheme.spacing.unit * 2,
