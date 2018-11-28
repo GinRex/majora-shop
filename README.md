@@ -10,6 +10,7 @@ now you can do managing with admin dashboard and the front site will be automati
 
 
 ## Requirements:
+- [x] Demo is documented
 - [x] Demo could run on Web
 - [x] Demo is scenario accurated
 - [x] Demo is prototype accurated
